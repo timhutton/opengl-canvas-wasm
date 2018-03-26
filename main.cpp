@@ -20,7 +20,9 @@ const GLchar* fragmentSource =
     "precision mediump float;\n"
     "void main()                                  \n"
     "{                                            \n"
-    "  gl_FragColor = vec4 (1.0, 1.0, 1.0, 1.0 );\n"
+    "  gl_FragColor[0] = gl_FragCoord.x/640.0;    \n"
+    "  gl_FragColor[1] = gl_FragCoord.y/480.0;    \n"
+    "  gl_FragColor[2] = 0.5;                     \n"
     "}                                            \n";
 
 
@@ -91,6 +93,10 @@ int main(int argc, char** argv)
             if(e.type == SDL_QUIT) std::terminate();
         }
 
+        // move a vertex
+        const uint32_t milliseconds_since_start = SDL_GetTicks();
+        vertices[0] = ( milliseconds_since_start % 1000 ) / 1000.0f - 0.5f;
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
         // Clear the screen to black
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
