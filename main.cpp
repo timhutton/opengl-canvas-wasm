@@ -11,11 +11,11 @@
 
 // Shader sources
 const GLchar* vertexSource =
-    "attribute vec4 position;    \n"
-    "void main()                  \n"
-    "{                            \n"
-    "   gl_Position = vec4(position.xyz, 1.0);  \n"
-    "}                            \n";
+    "attribute vec4 position;                     \n"
+    "void main()                                  \n"
+    "{                                            \n"
+    "  gl_Position = vec4(position.xyz, 1.0);     \n"
+    "}                                            \n";
 const GLchar* fragmentSource =
     "precision mediump float;\n"
     "void main()                                  \n"
@@ -31,8 +31,6 @@ void main_loop() { loop(); }
 
 int main(int argc, char** argv)
 {
-    // SDL_Init(SDL_INIT_VIDEO);
-
     auto wnd(
         SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             640, 480, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN));
@@ -76,7 +74,6 @@ int main(int argc, char** argv)
     GLuint shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
-    // glBindFragDataLocation(shaderProgram, 0, "outColor");
     glLinkProgram(shaderProgram);
     glUseProgram(shaderProgram);
 
@@ -95,7 +92,8 @@ int main(int argc, char** argv)
 
         // move a vertex
         const uint32_t milliseconds_since_start = SDL_GetTicks();
-        vertices[0] = ( milliseconds_since_start % 1000 ) / 1000.0f - 0.5f;
+        const uint32_t milliseconds_per_loop = 3000;
+        vertices[0] = ( milliseconds_since_start % milliseconds_per_loop ) / float(milliseconds_per_loop) - 0.5f;
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
         // Clear the screen to black
