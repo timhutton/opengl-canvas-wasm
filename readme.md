@@ -25,7 +25,7 @@ Instructions:
 
 4. Open index.html in a web browser. You should see a colorful animated triangle:
 
-    <img width="400px" src="https://user-images.githubusercontent.com/647092/37925438-73da5d44-312c-11e8-8732-1cae0e764913.png" />
+    <img width="400px" src="https://user-images.githubusercontent.com/647092/37932094-866c158e-313f-11e8-84f9-3873223373c5.png" />
 
 
 MIT license:
