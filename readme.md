@@ -15,7 +15,13 @@ Instructions:
     
 3. Build index.js and index.wasm:
 
-    ```emcc main.cpp -std=c++11 -s WASM=1 -s USE_SDL=2 -O3 -o index.js```
+    ```emcc main.cpp -s EXPORTED_FUNCTIONS="['_main','_toggle_background_color']" -std=c++11 -s WASM=1 -s USE_SDL=2 -O3 -o index.js```
+    
+    on Windows, or
+    
+    ```emcc main.cpp -s EXPORTED_FUNCTIONS='["_main","_toggle_background_color"]' -std=c++11 -s WASM=1 -s USE_SDL=2 -O3 -o index.js```
+    
+    on other platforms.
 
 4. Open index.html in a web browser. You should see a colorful animated triangle:
 

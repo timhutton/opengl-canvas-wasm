@@ -22,6 +22,12 @@ const GLchar* fragmentSource =
     "  gl_FragColor[2] = 0.5;                     \n"
     "}                                            \n";
 
+// an example of something we will control from the javascript side
+bool background_is_black = true;
+
+// the function called by the javascript code
+extern "C" void toggle_background_color() { background_is_black = !background_is_black; }
+
 std::function<void()> loop;
 void main_loop() { loop(); }
 
@@ -75,8 +81,11 @@ int main(int argc, char** argv)
         vertices[0] = ( milliseconds_since_start % milliseconds_per_loop ) / float(milliseconds_per_loop) - 0.5f;
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-        // Clear the screen to black
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        // Clear the screen
+        if( background_is_black )
+            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        else
+            glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw a triangle from the 3 vertices
