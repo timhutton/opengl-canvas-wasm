@@ -17,7 +17,9 @@ Instructions:
 
     ```emcc main.cpp -std=c++11 -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s USE_SDL_TTF=2 -O3 -o index.js```
 
-4. Open index.html in a web browser. You should see ...
+4. Open index.html in a web browser. You should see a colorful animated triangle:
+
+    <img width="400px" src="https://user-images.githubusercontent.com/647092/37925438-73da5d44-312c-11e8-8732-1cae0e764913.png" />
 
 
 MIT license:
