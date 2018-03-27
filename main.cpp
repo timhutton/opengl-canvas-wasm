@@ -26,19 +26,18 @@ const GLchar* fragmentSource =
 bool background_is_black = true;
 
 // the function called by the javascript code
-extern "C" void toggle_background_color() { background_is_black = !background_is_black; }
+extern "C" void EMSCRIPTEN_KEEPALIVE toggle_background_color() { background_is_black = !background_is_black; }
 
 std::function<void()> loop;
 void main_loop() { loop(); }
 
-int main(int argc, char** argv)
+int main()
 {
     SDL_Window *window;
     SDL_CreateWindowAndRenderer(640, 480, 0, &window, nullptr);
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-    SDL_GL_SetSwapInterval(0);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
